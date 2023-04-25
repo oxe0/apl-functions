@@ -1,5 +1,5 @@
 import { Order } from "@models/order";
 
-export interface IOrdersRepository {
+export type IOrdersRepository = {
   createOrder(carrierId: string): Promise<Order>;
 }

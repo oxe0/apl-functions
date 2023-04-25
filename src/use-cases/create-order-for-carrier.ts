@@ -1,7 +1,7 @@
 import { Order } from "@models/order";
 import { IOrdersRepository } from "@repositories/types";
 
-export interface CreateOrderForCarrierParams {
+export type CreateOrderForCarrierParams = {
   carrierId: string;
 }
 

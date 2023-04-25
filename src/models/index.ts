@@ -9,4 +9,4 @@ export default function createDynamoDBClient(): DynamoDB {
   }
 
   return new DynamoDB();
-};
+}
