@@ -1,7 +1,7 @@
 export default {
-  type: "object",
+  type: 'object',
   properties: {
     carrierId: { type: 'string' },
   },
-  required: ['carrierId']
+  required: ['carrierId'],
 } as const;

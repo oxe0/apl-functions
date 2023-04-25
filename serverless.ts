@@ -4,7 +4,11 @@ import createOrder from '@functions/create-order';
 const serverlessConfiguration: AWS = {
   service: 'apl-order-api',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-dynamodb-local'],
+  plugins: [
+    'serverless-esbuild',
+    'serverless-offline',
+    'serverless-dynamodb-local',
+  ],
   provider: {
     name: 'aws',
     region: 'eu-central-1',
@@ -25,19 +29,19 @@ const serverlessConfiguration: AWS = {
           {
             Effect: 'Allow',
             Action: [
-              "dynamodb:DescribeTable",
-              "dynamodb:Query",
-              "dynamodb:Scan",
-              "dynamodb:GetItem",
-              "dynamodb:PutItem",
-              "dynamodb:UpdateItem",
-              "dynamodb:DeleteItem",
+              'dynamodb:DescribeTable',
+              'dynamodb:Query',
+              'dynamodb:Scan',
+              'dynamodb:GetItem',
+              'dynamodb:PutItem',
+              'dynamodb:UpdateItem',
+              'dynamodb:DeleteItem',
             ],
-            Resource: "arn:aws:dynamodb:eu-central-1:*:table/OrdersTable",
-          }
-        ]
-      }
-    }
+            Resource: 'arn:aws:dynamodb:eu-central-1:*:table/OrdersTable',
+          },
+        ],
+      },
+    },
   },
   functions: { createOrder },
   package: { individually: true },
@@ -58,8 +62,8 @@ const serverlessConfiguration: AWS = {
         inMemory: true,
         migrate: true,
       },
-      stages: "dev"
-    }
+      stages: 'dev',
+    },
   },
   resources: {
     Resources: {
@@ -67,31 +71,31 @@ const serverlessConfiguration: AWS = {
         Type: 'AWS::DynamoDB::Table',
         Properties: {
           TableName: 'APLTable',
-          BillingMode: "PAY_PER_REQUEST",
+          BillingMode: 'PAY_PER_REQUEST',
           AttributeDefinitions: [
             {
-              AttributeName: "PK",
-              AttributeType: "S"
+              AttributeName: 'PK',
+              AttributeType: 'S',
             },
             {
-              AttributeName: "SK",
-              AttributeType: "S"
+              AttributeName: 'SK',
+              AttributeType: 'S',
             },
           ],
           KeySchema: [
             {
-              AttributeName: "PK",
-              KeyType: "HASH"
+              AttributeName: 'PK',
+              KeyType: 'HASH',
             },
             {
-              AttributeName: "SK",
-              KeyType: "RANGE"
-            }
-          ]
-        }
-      }
-    }
-  }
+              AttributeName: 'SK',
+              KeyType: 'RANGE',
+            },
+          ],
+        },
+      },
+    },
+  },
 };
 
 module.exports = serverlessConfiguration;

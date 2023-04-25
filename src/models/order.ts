@@ -1,11 +1,11 @@
-import { randomUUID } from "crypto";
-import { DynamoDBItem } from "@libs/dynamo";
+import { randomUUID } from 'crypto';
+import { DynamoDBItem } from '@libs/dynamo';
 
 export enum OrderStatus {
-  CREATED = "CREATED",
-  PARCEL_DELIVERED = "PARCEL_DELIVERED",
-  CONSUMER_PICKED_UP = "CONSUMER_PICKED_UP",
-  TECHNICAL_FAILURE = "TECHNICAL_FAILURE"
+  CREATED = 'CREATED',
+  PARCEL_DELIVERED = 'PARCEL_DELIVERED',
+  CONSUMER_PICKED_UP = 'CONSUMER_PICKED_UP',
+  TECHNICAL_FAILURE = 'TECHNICAL_FAILURE',
 }
 
 export class Order extends DynamoDBItem {
@@ -14,7 +14,12 @@ export class Order extends DynamoDBItem {
   readonly createdAt: Date;
   readonly status: OrderStatus;
 
-  constructor(carrierId: string, orderId?: string, createdAt?: Date, status?: OrderStatus) {
+  constructor(
+    carrierId: string,
+    orderId?: string,
+    createdAt?: Date,
+    status?: OrderStatus,
+  ) {
     super();
     this.carrierId = carrierId;
     this.orderId = orderId ?? randomUUID();
