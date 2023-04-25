@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@functions/*": ["src/functions/*"],
+      "@use-cases/*": ["src/use-cases/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@models/*": ["src/models/*"],
+      "@libs/*": ["src/libs/*"],
+      "@libs/dynamo": ["src/libs/dynamo/index.ts"],
+    }
+  }
+}
