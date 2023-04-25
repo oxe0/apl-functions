@@ -1,3 +1,24 @@
+# Introduction 
+
+## AWS Architecture
+
+![Alt text](./docs/imgs/aws-architecture.svg)
+- **Route 53:** Sets up DNS for the environment
+- AWS WAF: Protects our applications from known threats such as DDoS and cross-site scripting
+- **AWS API Gateway:** Bundles our Lambdas together in a single URL and routes them to the correct AWS Lambda
+- **Authn/Authz Functions:** Ideally, some kind of authentication should be used to identify users who are accessing the orders
+- **Order API Functions:** Used for handling CRUD operations
+- **APL Table:** DynamoDB Table used to store multiple entities in our APL order domain (Orders, Lockers, etc)
+- **Order Notification functions:** Handle changes from DynamoDB streams from the ATL Table. They could implement different types of notifications depending on requirements (i.e email using AWS SES, Webhooks API, Websockets).
+
+Ideally, all AWS components such as Route 53, AWS WAF, and DynamoDB tables should be created using an Infrastructure as Code (IaC) approach, using tools such as Terraform or AWS CDK.
+
+I would create another repository with those configurations as a monorepo that could have abstract constructs where multiple teams could collaborate.
+This usually works better when you have a dedicated Platform Team, responsible for assisting teams in building scalable, secure, and reusable infrastructure from an organization standpoint.
+Those infrastructure constructs could be easily accessed by Serverless Framework using SSM Parameters. You can find more about this pattern [here](https://www.serverless.com/blog/definitive-guide-terraform-serverless/). 
+
+The functions are implemented inspired by Clean Architecture by Uncle Bob. Since the changes from requirements are constant when building products, isolating components into an onion-like architecture makes the software easier to test and maintain (since changing from AWS Lambda to Fargate would only cost rewriting platform specific logic and re-use the use cases).
+
 # Development
 
 ## Installation/deployment instructions
