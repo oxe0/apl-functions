@@ -7,7 +7,6 @@
     "lint": "eslint --ext .js,.ts .",
     "dev": "serverless offline start",
     "deploy:staging": "serverless deploy --aws-profile $AWS_PROFILE --stage staging",
-    "remove:staging": "serverless remove --aws-profile $AWS_PROFILE --stage staging",
     "deploy:production": "serverless deploy --aws-profile $AWS_PROFILE --stage production"
   },
   "engines": {
